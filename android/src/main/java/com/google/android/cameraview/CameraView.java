@@ -163,7 +163,18 @@ public class CameraView extends FrameLayout {
         if (Build.VERSION.SDK_INT < 14) {
             preview = new SurfaceViewPreview(context, this);
         } else {
-            preview = new TextureViewPreview(context, this);
+            TextureViewPreview texPrev =new TextureViewPreview(context, this);
+            preview = texPrev;
+
+            // bind custom callback
+            texPrev.setFrameListener(new TextureViewPreview.TextureFrameListener()
+            {
+                @Override
+                public void onFramePreview(byte[] data, int width, int height, int orientation) {
+                    CameraView.this.mCallbacks.onTextureFramePreview(data,  width,  height,  orientation);
+                }
+            });
+
         }
         return preview;
     }
