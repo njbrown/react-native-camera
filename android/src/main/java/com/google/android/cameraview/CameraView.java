@@ -697,6 +697,12 @@ public class CameraView extends FrameLayout {
 
         @Override
         public void onFramePreview(byte[] data, int width, int height, int orientation) {
+            // for (Callback callback : mCallbacks) {
+            //     callback.onFramePreview(CameraView.this, data, width, height, orientation);
+            // }
+        }
+
+        public void onTextureFramePreview(byte[] data, int width, int height, int orientation) {
             for (Callback callback : mCallbacks) {
                 callback.onFramePreview(CameraView.this, data, width, height, orientation);
             }
