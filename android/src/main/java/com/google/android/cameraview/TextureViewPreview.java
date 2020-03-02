@@ -30,6 +30,11 @@ import org.reactnative.camera.R;
 @TargetApi(14)
 class TextureViewPreview extends PreviewImpl {
 
+    public interface TextureFrameListener
+    {
+        void onFramePreview(byte[] data, int width, int height, int orientation);
+    }
+
     private final TextureView mTextureView;
 
     private int mDisplayOrientation;
